@@ -26,8 +26,13 @@ body {
     rgb(var(--background-start-rgb));
 } */
 
-body{
-  font-size: .8rem
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-size: 0.8rem;
 }
 table {
   @apply w-full;
@@ -38,17 +43,40 @@ table tbody tr td {
 }
 
 table tbody tr {
-  @apply cursor-pointer transition-all hover:bg-blue-50 border-l-2 border-transparent hover:border-l-blue-700 border-b-[1px] border-b-slate-100;
+  @apply cursor-pointer transition-all hover:bg-[#F1F3FC] border-l-2 border-transparent hover:border-l-[#3D4DC8] border-b-[1px] border-b-slate-100;
 }
 
-table thead tr{
-  @apply bg-blue-50 border-l-blue-700 border-l-2
+table thead tr {
+  @apply bg-[#F1F3FC] border-l-[#3D4DC8] border-l-2;
 }
 
-table thead tr th{
-  @apply p-3
+table thead tr th {
+  @apply p-3;
 }
 
-.navigation{
-  @apply p-2 cursor-pointer hover:bg-white hover:text-blue-700 transition-all w-full font-bold text-left px-[20%]
+.navigation {
+  @apply p-2 cursor-pointer hover:bg-white hover:text-[#3D4DC8] transition-all w-full font-bold text-left px-[20%];
+}
+
+.information p {
+  @apply p-2 cursor-pointer font-bold border-l-2 transition-all hover:border-l-[#3D4DC8] hover:bg-[#F1F3FC];
+}
+
+.highlight {
+  @apply border-l-2 border-l-[#3D4DC8] bg-[#F1F3FC];
+}
+
+@keyframes pop {
+  from {
+      opacity: 0;
+      transform: scale(0.7);
+  }
+  to{
+      opacity: 1;
+      transform: scale(1)
+  }
+}
+
+.modal{
+  animation: pop 0.4s ease;
 }

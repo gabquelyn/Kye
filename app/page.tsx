@@ -1,8 +1,17 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Table from "./components/Table";
 import { BiSearch, BiBell } from "react-icons/bi";
 import Image from "next/image";
+import AddEmployee from "./components/AddEmployee";
 export default function Home() {
+  const [modal, setModal] = useState(false);
+
+  const closeModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const id = e.currentTarget.id;
+    if (id === "backdrop") setModal(false);
+  };
+
   return (
     <div className="mx-[4rem] my-[2rem]">
       <div className="mb-[1rem] flex items-center justify-between">
@@ -33,11 +42,15 @@ export default function Home() {
       <hr className="bg-[#A1A8B2] my-[1rem]" />
       <div className="flex justify-between items-center mb-[1rem]">
         <p className="font-bold">Employees</p>
-        <button className="font-bold text-white py-2 px-4 rounded-[1.5rem] bg-blue-700">
+        <button
+          className="font-bold text-white py-2 px-4 rounded-[1.5rem] bg-[#3D4DC8]"
+          onClick={() => setModal(true)}
+        >
           + Add new user
         </button>
       </div>
       <Table />
+      {modal && <AddEmployee closeModal={closeModal} />}
     </div>
   );
 }
