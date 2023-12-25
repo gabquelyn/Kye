@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +24,31 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+body{
+  font-size: .8rem
+}
+table {
+  @apply w-full;
+}
+
+table tbody tr td {
+  @apply text-center p-3 my-3;
+}
+
+table tbody tr {
+  @apply cursor-pointer transition-all hover:bg-blue-50 border-l-2 border-transparent hover:border-l-blue-700 border-b-[1px] border-b-slate-100;
+}
+
+table thead tr{
+  @apply bg-blue-50 border-l-blue-700 border-l-2
+}
+
+table thead tr th{
+  @apply p-3
+}
+
+.navigation{
+  @apply p-2 cursor-pointer hover:bg-white hover:text-blue-700 transition-all w-full font-bold text-left px-[20%]
 }
