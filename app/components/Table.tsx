@@ -1,10 +1,13 @@
 import React from "react";
-import { BiEdit } from "react-icons/bi";
-import { RiDeleteBinLine } from "react-icons/ri";
+import TableRow from "./TableRow";
 
-export default function Table() {
+export default function Table({
+  employees,
+}: {
+  employees: MongoEmployeeDetails[];
+}) {
   return (
-    <div>
+    <div className="overflow-x-auto">
       <table>
         <thead>
           <tr>
@@ -16,22 +19,21 @@ export default function Table() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>EMma</td>
-            <td>EMma</td>
-            <td>EMma</td>
-            <td>EMma</td>
-            <td>
-              <button>
-                <BiEdit />
-              </button>
-              <button className="ml-3">
-                <RiDeleteBinLine />
-              </button>
-            </td>
-          </tr>
+          {employees.map((employee) => (
+            <TableRow
+              id={employee._id}
+              key={employee._id}
+              firstname={employee.firstname}
+              lastname={employee.lastname}
+              dataurl={employee.avatar}
+              position={employee.position}
+              email={employee.email}
+              phone={employee.phone}
+            />
+          ))}
         </tbody>
       </table>
+      {employees.length === 0 && <p className="mt-3">No Employee found</p>}
     </div>
   );
 }

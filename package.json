@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mongoose": "^8.0.3",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "notistack": "^3.0.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0"
+    "react-icons": "^4.12.0",
+    "react-spinners-kit": "^1.9.1"
   },
   "devDependencies": {
     "@types/node": "^20",
