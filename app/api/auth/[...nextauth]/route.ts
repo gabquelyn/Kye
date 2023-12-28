@@ -21,11 +21,11 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "tester", email: "test@test.com" };
+        const user = { id: "1", name: "gabquelyn@gmail.com", email: "test@test.com" };
 
         if (
           credentials?.username === user.name &&
-          credentials?.password === "testing"
+          credentials?.password === "informationsystems"
         ) {
           return user;
         } else {
