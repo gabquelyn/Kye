@@ -2,8 +2,7 @@ import React from "react";
 import { IoScan } from "react-icons/io5";
 import { getServerSession } from "next-auth/next"
 import Link from "next/link";
-import { MdOutlineRocketLaunch } from "react-icons/md";
-
+import { MdOutlineRocketLaunch, MdOutlineLogin } from "react-icons/md";
 export default async function Home() {
  const session = await getServerSession()
   return (
@@ -17,7 +16,7 @@ export default async function Home() {
         href="/api/auth/signin"
         className="bg-[#3D4DC8] font-bold flex gap-3 items-center  text-white p-3 px-4 rounded-[2rem]"
       >
-        Login <MdOutlineRocketLaunch />
+        Login <MdOutlineLogin />
       </Link>}
 
       <Link
