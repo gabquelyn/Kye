@@ -70,7 +70,7 @@ export default function AddEmployee({
     for (const keys of Object.keys(details)) {
       if (!details[keys as unionAl]){
         console.log(keys)
-        return enqueueSnackbar(`Fill all details and add a profile picture`);
+        return enqueueSnackbar(`Fill all details and add a profile picture`, {variant: "warning"});
       }
 
     }

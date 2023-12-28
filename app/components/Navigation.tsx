@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
+import { enqueueSnackbar } from "notistack";
 import { usePathname } from "next/navigation";
 export default function Navigation() {
   const pathname = usePathname();
@@ -41,14 +42,14 @@ export default function Navigation() {
             >
               Employees
             </Link>
-            <Link
-              href="/settings"
+            <div
+              onClick={() => enqueueSnackbar("Comming soon", { variant: "info" })}
               className={`navigation ${
                 pathname === "/settings" ? "bg-white text-[#3D4DC8]" : ""
               }`}
             >
               Settings
-            </Link>
+            </div>
             <Link
               href="/api/auth/signout"
               className={`navigation ${

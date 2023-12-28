@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import TableRow from "./TableRow";
 import { BiSearch } from "react-icons/bi";
+import { ClassicSpinner } from "react-spinners-kit";
 
 export default function Table({}: {}) {
   const [employees, setEmployees] = useState<MongoEmployeeDetails[]>([]);
@@ -64,7 +65,11 @@ export default function Table({}: {}) {
           ))}
         </tbody>
       </table>
-      {loading && <p>Loading</p>}
+      {loading && (
+        <div className="flex items-center justify-center p-5 mt-9 text-[#3D4DC8]">
+          <ClassicSpinner size = {60} color = "#3D4DC8"/>
+        </div>
+      )}
     </div>
   );
 }

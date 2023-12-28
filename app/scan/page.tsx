@@ -35,10 +35,10 @@ export default function Check() {
       {scanResult ? (
         <div>
           <p className="flex gap-2 items-center">
-            <span>Scan Success:</span>{" "}
+            <span className="font-bold">Scan Success:</span>{" "}
             <Link
               href={`/employee/${scanResult}`}
-              className="text-[#3D4DC8] underline"
+              className="bg-[#3D4DC8] text-white px-3 py-2 underline"
             >
               View Employee
             </Link>

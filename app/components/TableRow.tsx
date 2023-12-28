@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { BiEdit } from "react-icons/bi";
+import { FaBoltLightning } from "react-icons/fa6";
+import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
 export default function TableRow({
   dataurl,
@@ -11,7 +11,7 @@ export default function TableRow({
   position,
   email,
   phone,
-  id
+  id,
 }: {
   dataurl: string;
   firstname: string;
@@ -19,12 +19,12 @@ export default function TableRow({
   position: string;
   email: string;
   phone: string;
-  id: string
+  id: string;
 }) {
   const router = useRouter();
   return (
-    <tr onClick={() => router.push(`/employee/${id}`)}>
-      <td>
+    <tr>
+      <td onClick={() => router.push(`/employee/${id}`)}>
         <div className="flex items-center justify-center gap-2 whitespace-nowrap">
           <div className="relative rounded-[50%] overflow-hidden h-[2.5rem] w-[2.5rem]">
             <Image
@@ -37,15 +37,15 @@ export default function TableRow({
           <p>{`${firstname} ${lastname}`}</p>
         </div>
       </td>
-      <td>{position}</td>
-      <td className="text-[#3D4DC8]">{email}</td>
-      <td>{phone}</td>
+      <td onClick={() => router.push(`/employee/${id}`)}>{position}</td>
+      <td className="text-[#3D4DC8]" onClick={() => router.push(`/employee/${id}`)}>{email}</td>
+      <td onClick={() => router.push(`/employee/${id}`)}>{phone}</td>
       <td>
-        <button>
-          <BiEdit />
-        </button>
-        <button className="ml-3">
-          <RiDeleteBinLine />
+        <button
+          className="font-bold p-1 rounded-sm bg-[#3D4DC8] text-white"
+          onClick={() => enqueueSnackbar("Comming soon", { variant: "info" })}
+        >
+          <FaBoltLightning />
         </button>
       </td>
     </tr>
