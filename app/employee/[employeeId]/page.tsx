@@ -15,37 +15,44 @@ type Params = {
 export default async function EmployeeDetails({
   params: { employeeId },
 }: Params) {
-    console.log(employeeId)
+  console.log(employeeId);
   const session = await getServerSession();
   const db = await connectToMongoDB();
   const collection = db.collection("employee");
-//   const employeeDetails = await collection.findOne<MongoEmployeeDetails>({
-//     _id: new ObjectId(employeeId),
-//   });
-//   await closeMongoDBConnection();
-//   if (!employeeDetails)
-//     return (
-//       <div className="flex items-center justify-center h-[100vh]">
-//         <Image src="/404.png" alt="not found" height={300} width={349} unoptimized/>
-//       </div>
-//     );
-//   const {
-//     avatar,
-//     firstname,
-//     lastname,
-//     email,
-//     phone,
-//     gender,
-//     dob,
-//     previous,
-//     current,
-//     businessAddress,
-//     position,
-//     soo,
-//     city,
-//     state,
-//     zipcode,
-//   } = employeeDetails;
+  const employeeDetails = await collection.findOne({
+    _id: new ObjectId(employeeId),
+  });
+  
+  if (!employeeDetails) {
+    return (
+      <div className="flex items-center justify-center h-[100vh]">
+        <Image
+          src="/404.png"
+          alt="not found"
+          height={300}
+          width={349}
+          unoptimized
+        />
+      </div>
+    );
+  }
+  //   const {
+  //     avatar,
+  //     firstname,
+  //     lastname,
+  //     email,
+  //     phone,
+  //     gender,
+  //     dob,
+  //     previous,
+  //     current,
+  //     businessAddress,
+  //     position,
+  //     soo,
+  //     city,
+  //     state,
+  //     zipcode,
+  //   } = employeeDetails;
   return (
     <div className="m-[3rem] flex flex-col gap-3 items-center justify-center">
       {/* <div className="relative h-[9rem] w-[9rem] rounded-[50%] overflow-hidden">
