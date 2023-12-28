@@ -50,7 +50,7 @@ export default function Navigation() {
               Settings
             </Link>
             <Link
-              href="/logout"
+              href="/api/auth/signout"
               className={`navigation ${
                 pathname === "/logout" ? "bg-white text-[#3D4DC8]" : ""
               }`}

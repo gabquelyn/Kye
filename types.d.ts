@@ -21,7 +21,6 @@ interface inputFunction {
 
 interface EmployeeDetails {
   avatar: string;
-  title: string;
   firstname: string;
   lastname: string;
   phone: string;

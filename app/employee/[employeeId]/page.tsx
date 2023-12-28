@@ -1,7 +1,8 @@
 import React from "react";
 import { ObjectId } from "mongodb";
+import QrCode from "@/app/components/QrCode";
+import { getServerSession } from "next-auth/next";
 import Image from "next/image";
-import Personal from "@/app/components/Personal";
 import {
   closeMongoDBConnection,
   connectToMongoDB,
@@ -14,13 +15,19 @@ type Params = {
 export default async function EmployeeDetails({
   params: { employeeId },
 }: Params) {
+  const session = await getServerSession();
   const db = await connectToMongoDB();
   const collection = db.collection("employee");
   const employeeDetails = await collection.findOne<MongoEmployeeDetails>({
     _id: new ObjectId(employeeId),
   });
   await closeMongoDBConnection();
-  if (!employeeDetails) return <p>Cannot find the Employee</p>;
+  if (!employeeDetails)
+    return (
+      <div className="flex items-center justify-center h-[100vh]">
+        <Image src="/404.png" alt="not found" height={300} width={349} unoptimized/>
+      </div>
+    );
   const {
     avatar,
     firstname,
@@ -41,7 +48,12 @@ export default async function EmployeeDetails({
   return (
     <div className="m-[3rem] flex flex-col gap-3 items-center justify-center">
       <div className="relative h-[9rem] w-[9rem] rounded-[50%] overflow-hidden">
-        <Image src={avatar || "/holder.png"} alt="profile pics" fill className="object-cover" />
+        <Image
+          src={avatar || "/holder.png"}
+          alt="profile pics"
+          fill
+          className="object-cover"
+        />
       </div>
       <div className="bg-[#F1F3FC] p-6 rounded-md w-[95%] md:w-[85%]">
         <p className="font-bold text-[.9rem] mb-3 uppercase">
@@ -107,6 +119,7 @@ export default async function EmployeeDetails({
           </p>
         </div>
       </div>
+      <div>{session && <QrCode value={employeeId} />}</div>
     </div>
   );
 }
@@ -116,6 +129,6 @@ export async function generateStaticParams() {
   const collection = db.collection("employee");
   const allEmployees = await collection.find({}).toArray();
   return allEmployees.map((employee) => ({
-    userId: employee._id.toString(),
+    employeeId: employee._id.toString(),
   }));
 }

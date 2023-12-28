@@ -47,13 +47,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
       zipcode,
       createdAt: new Date()
     });
-    await closeMongoDBConnection();
     return Response.json({
       message: `Employee created ${newEmployee.insertedId}`,
     });
   } catch (error) {
     console.log(error);
-    await closeMongoDBConnection();
     return Response.json({ success: false, message: error }, { status: 400 });
   }
 }

@@ -17,7 +17,6 @@ export default function AddEmployee({
   const [details, setDetails] = useState({
     email: "",
     avatar: "",
-    title: "",
     firstname: "",
     lastname: "",
     phone: "",
@@ -69,8 +68,11 @@ export default function AddEmployee({
 
   async function createEmployee() {
     for (const keys of Object.keys(details)) {
-      if (!details[keys as unionAl])
+      if (!details[keys as unionAl]){
+        console.log(keys)
         return enqueueSnackbar(`Fill all details and add a profile picture`);
+      }
+
     }
     try {
       setIsLoading(true);
@@ -85,7 +87,6 @@ export default function AddEmployee({
       setDetails({
         email: "",
         avatar: "",
-        title: "",
         firstname: "",
         lastname: "",
         phone: "",
@@ -102,6 +103,7 @@ export default function AddEmployee({
         gender: "male",
       });
       enqueueSnackbar("New Employee created successfully", { variant: "info" });
+      window.location.reload()
     } catch (err) {
       console.log(err);
     }

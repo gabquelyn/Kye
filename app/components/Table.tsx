@@ -1,13 +1,44 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import TableRow from "./TableRow";
+import { BiSearch } from "react-icons/bi";
 
-export default function Table({
-  employees,
-}: {
-  employees: MongoEmployeeDetails[];
-}) {
+export default function Table({}: {}) {
+  const [employees, setEmployees] = useState<MongoEmployeeDetails[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [term, setTerm] = useState("");
+  useEffect(() => {
+    async function getEmployess() {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/actions");
+        const data: MongoEmployeeDetails[] = await response.json();
+        const filteredEmployees = data.filter(
+          (employee) =>
+            employee?.firstname.toLowerCase().includes(term.toLowerCase()) ||
+            employee?.lastname.toLowerCase().includes(term.toLowerCase()) ||
+            employee?.email.includes(term.toLowerCase())
+        );
+        setEmployees(filteredEmployees);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getEmployess();
+  }, [term]);
+
   return (
     <div className="overflow-x-auto">
+      <div className="relative mb-3">
+        <input
+          type="search"
+          className="bg-blue-50 outline-none border-none p-2 rounded-[2rem] pl-8"
+          placeholder="Search"
+          onChange={(e) => setTerm(e.target.value)}
+        />
+        <BiSearch className="absolute top-[50%] text-[1.2rem] left-2 -translate-y-[50%] text-[#A1A8B2]" />
+      </div>
       <table>
         <thead>
           <tr>
@@ -33,7 +64,7 @@ export default function Table({
           ))}
         </tbody>
       </table>
-      {employees.length === 0 && <p className="mt-3">No Employee found</p>}
+      {loading && <p>Loading</p>}
     </div>
   );
 }
