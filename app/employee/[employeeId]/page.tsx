@@ -82,7 +82,7 @@ export default async function EmployeeDetails({
       </div>
       <div className="bg-[#F1F3FC] p-4 rounded-md w-[95%] md:w-[85%]">
         <p className="font-bold text-[.9rem] mb-3 uppercase">
-          Employee's information
+          Employee&apos;s information
         </p>
         <div className="board">
           <p>
