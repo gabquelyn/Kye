@@ -10,7 +10,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const {
     avatar,
     email,
-    title,
     firstname,
     lastname,
     phone,
@@ -30,7 +29,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const newEmployee = await collection.insertOne({
       avatar,
       email,
-      title,
       gender,
       firstname,
       lastname,
