@@ -15,7 +15,7 @@ type Params = {
 export default async function EmployeeDetails({
   params: { employeeId },
 }: Params) {
-  console.log(employeeId);
+    console.log(employeeId)
   const session = await getServerSession();
 //   const db = await connectToMongoDB();
 //   const collection = db.collection("employee");
@@ -26,13 +26,7 @@ export default async function EmployeeDetails({
 //   if (!employeeDetails)
 //     return (
 //       <div className="flex items-center justify-center h-[100vh]">
-//         <Image
-//           src="/404.png"
-//           alt="not found"
-//           height={300}
-//           width={349}
-//           unoptimized
-//         />
+//         <Image src="/404.png" alt="not found" height={300} width={349} unoptimized/>
 //       </div>
 //     );
 //   const {
