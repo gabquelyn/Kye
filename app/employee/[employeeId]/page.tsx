@@ -22,7 +22,7 @@ export default async function EmployeeDetails({
   const employeeDetails = await collection.findOne({
     _id: new ObjectId(employeeId),
   });
-  
+
   if (!employeeDetails) {
     return (
       <div className="flex items-center justify-center h-[100vh]">
@@ -36,26 +36,26 @@ export default async function EmployeeDetails({
       </div>
     );
   }
-  //   const {
-  //     avatar,
-  //     firstname,
-  //     lastname,
-  //     email,
-  //     phone,
-  //     gender,
-  //     dob,
-  //     previous,
-  //     current,
-  //     businessAddress,
-  //     position,
-  //     soo,
-  //     city,
-  //     state,
-  //     zipcode,
-  //   } = employeeDetails;
+  const {
+    avatar,
+    firstname,
+    lastname,
+    email,
+    phone,
+    gender,
+    dob,
+    previous,
+    current,
+    businessAddress,
+    position,
+    soo,
+    city,
+    state,
+    zipcode,
+  } = employeeDetails;
   return (
     <div className="m-[3rem] flex flex-col gap-3 items-center justify-center">
-      {/* <div className="relative h-[9rem] w-[9rem] rounded-[50%] overflow-hidden">
+      <div className="relative h-[9rem] w-[9rem] rounded-[50%] overflow-hidden">
         <Image
           src={avatar || "/holder.png"}
           alt="profile pics"
@@ -126,7 +126,7 @@ export default async function EmployeeDetails({
             Zip code: <span>{zipcode}</span>
           </p>
         </div>
-      </div> */}
+      </div>
       <div>{session && <QrCode value={employeeId} />}</div>
     </div>
   );
