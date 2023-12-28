@@ -17,8 +17,8 @@ export default async function EmployeeDetails({
 }: Params) {
     console.log(employeeId)
   const session = await getServerSession();
-//   const db = await connectToMongoDB();
-//   const collection = db.collection("employee");
+  const db = await connectToMongoDB();
+  const collection = db.collection("employee");
 //   const employeeDetails = await collection.findOne<MongoEmployeeDetails>({
 //     _id: new ObjectId(employeeId),
 //   });
